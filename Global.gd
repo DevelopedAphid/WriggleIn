@@ -1,18 +1,30 @@
 extends Node
 
-var employee_dict = [{
-		"name": "Employee 1",
-		"status": "in",
-		"time_status_changed": "8:21am"
+var person_dict = [{
+		"Name": "Employee1",
+		"Status": "in",
+		"Time_status_changed": "8:21am",
+		"Type": "Employee"
 	},
 	{
-		"name": "Employee 2",
-		"status": "out",
-		"time_status_changed": "8:23am"		
+		"Name": "AEmployee2",
+		"Status": "out",
+		"Time_status_changed": "8:23am",
+		"Type": "Employee"
+	},
+	{
+		"Name": "AAVisitor1",
+		"Status": "in",
+		"Time_status_changed": "8:35am",
+		"Type": "Visitor"
 	}
 ]
 
 func _ready():
-	print(employee_dict[1])
-	pass # Replace with function body.
-
+	#TODO sort the dictionary alphabetically by name 
+	#TODO stick this all in a sort function once sorting!
+	
+	#add ID numbers on ready
+	for n in person_dict.size():
+		person_dict[n].ID = n
+	print(person_dict)
