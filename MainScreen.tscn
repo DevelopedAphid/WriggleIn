@@ -19,19 +19,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EnterHBox" type="HBoxContainer" parent="MainPanel"]
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_right = -0.432007
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="EnterButton" type="Button" parent="MainPanel/EnterHBox"]
-margin_left = 205.0
-margin_right = 305.0
-margin_bottom = 600.0
+[node name="EnterButton" type="Button" parent="MainPanel"]
+margin_left = 213.476
+margin_top = 190.794
+margin_right = 313.476
+margin_bottom = 453.794
 rect_min_size = Vector2( 100, 32 )
 icon = ExtResource( 1 )
 clip_text = true
@@ -40,20 +32,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeaveHBox" type="HBoxContainer" parent="MainPanel"]
-anchor_left = 0.5
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -0.432007
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LeaveButton" type="Button" parent="MainPanel/LeaveHBox"]
-margin_left = 205.0
-margin_right = 305.0
-margin_bottom = 600.0
+[node name="LeaveButton" type="Button" parent="MainPanel"]
+margin_left = 719.119
+margin_top = 179.816
+margin_right = 819.119
+margin_bottom = 489.816
 rect_min_size = Vector2( 100, 32 )
 icon = ExtResource( 1 )
 clip_text = true
@@ -62,4 +45,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="button_up" from="MainPanel/EnterHBox/EnterButton" to="." method="_on_EnterButton_button_up"]
+[node name="AdminButton" type="Button" parent="MainPanel"]
+margin_left = 891.233
+margin_top = 482.713
+margin_right = 1009.23
+margin_bottom = 587.713
+icon = ExtResource( 1 )
+
+[connection signal="button_up" from="MainPanel/EnterButton" to="." method="_on_EnterButton_button_up"]
+[connection signal="button_up" from="MainPanel/AdminButton" to="." method="_on_AdminButton_button_up"]

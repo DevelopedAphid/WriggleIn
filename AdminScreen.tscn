@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://AdminPanel.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AdminPanel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameTextEdit" type="TextEdit" parent="AdminPanel"]
+margin_left = 171.439
+margin_top = 76.1953
+margin_right = 609.439
+margin_bottom = 210.195
+
+[node name="EnterButton" type="Button" parent="AdminPanel"]
+margin_left = 327.747
+margin_top = 231.0
+margin_right = 448.747
+margin_bottom = 251.0
+text = "Enter"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" type="Button" parent="AdminPanel"]
+margin_left = 188.0
+margin_top = 264.0
+margin_right = 287.0
+margin_bottom = 284.0
+text = "Back"
+
+[connection signal="button_up" from="AdminPanel/EnterButton" to="AdminPanel" method="_on_EnterButton_button_up"]
+[connection signal="button_up" from="AdminPanel/BackButton" to="AdminPanel" method="_on_BackButton_button_up"]

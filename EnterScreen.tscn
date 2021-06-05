@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://EnterPanel.gd" type="Script" id=1]
 [ext_resource path="res://EmployeeTree.gd" type="Script" id=2]
 
 [node name="Control" type="Control"]
@@ -12,6 +13,7 @@ __meta__ = {
 [node name="EnterPanel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -19,12 +21,20 @@ __meta__ = {
 [node name="EmployeeTree" type="Tree" parent="EnterPanel"]
 margin_left = 31.0
 margin_top = 21.0
-margin_right = 952.0
-margin_bottom = 561.0
+margin_right = 992.0
+margin_bottom = 529.0
 columns = 4
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BackButton" type="Button" parent="EnterPanel"]
+margin_left = 40.0
+margin_top = 545.0
+margin_right = 123.0
+margin_bottom = 565.0
+text = "Back"
+
 [connection signal="button_pressed" from="EnterPanel/EmployeeTree" to="EnterPanel/EmployeeTree" method="_on_EmployeeTree_button_pressed"]
+[connection signal="button_up" from="EnterPanel/BackButton" to="EnterPanel" method="_on_BackButton_button_up"]
