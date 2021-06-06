@@ -1,6 +1,6 @@
 extends Node
 
-signal person_added
+signal person_list_changed
 
 var person_dict = [{
 		"Name": "Employee1",
@@ -43,7 +43,12 @@ func add_new_person(Name: String, Type: String):
 	person_dict.append(new_person_dict)
 	assign_id_numbers()
 	
-	emit_signal("person_added")
+	emit_signal("person_list_changed")
+
+func remove_a_person(ID: int):
+	person_dict.remove(ID)
+	
+	emit_signal("person_list_changed")
 
 func change_person_status(ID_Number: int) -> String:
 	var current_status = person_dict[ID_Number].Status

@@ -1,7 +1,8 @@
 extends Panel
 
 func _ready():
-	pass # Replace with function body
+	pass 
+	#TODO: populate list here so people can be removed from this screen
 
 
 func _on_BackButton_button_up():
