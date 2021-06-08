@@ -25,10 +25,11 @@ func _update_tree():
 	
 	for n in Global.person_dict.size():
 		var current_tree_item: TreeItem = tree.create_item()
+		var current_person = Global.person_dict[n]
 		current_tree_item.set_icon(0,load("res://icon.png"))
-		current_tree_item.set_text(1,Global.person_dict[n].Name)
+		current_tree_item.set_text(1,Global.current_person.Name)
 		current_tree_item.add_button(2, load("res://icon_red.png"))
-		current_tree_item.set_text(3, str(Global.person_dict[n].ID))
+		current_tree_item.set_text(3, str(Global.current_person.ID))
 
 
 func _on_AdminTree_button_pressed(item, _column, _id):

@@ -10,7 +10,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EnterPanel" type="Panel" parent="."]
+[node name="EmployeePanel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -18,7 +18,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EmployeeTree" type="Tree" parent="EnterPanel"]
+[node name="EmployeeTree" type="Tree" parent="EmployeePanel"]
 margin_left = 31.0
 margin_top = 21.0
 margin_right = 992.0
@@ -29,12 +29,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackButton" type="Button" parent="EnterPanel"]
+[node name="BackButton" type="Button" parent="EmployeePanel"]
 margin_left = 40.0
 margin_top = 545.0
 margin_right = 123.0
 margin_bottom = 565.0
 text = "Back"
 
-[connection signal="button_pressed" from="EnterPanel/EmployeeTree" to="EnterPanel/EmployeeTree" method="_on_EmployeeTree_button_pressed"]
-[connection signal="button_up" from="EnterPanel/BackButton" to="EnterPanel" method="_on_BackButton_button_up"]
+[connection signal="button_pressed" from="EmployeePanel/EmployeeTree" to="EmployeePanel/EmployeeTree" method="_on_EmployeeTree_button_pressed"]
+[connection signal="button_up" from="EmployeePanel/BackButton" to="EmployeePanel" method="_on_BackButton_button_up"]

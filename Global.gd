@@ -1,6 +1,9 @@
 extends Node
 
 signal person_list_changed
+signal status_to_show_changed(new_status)
+
+var status_to_show: String = "all"
 
 var person_dict = [{
 		"Name": "Employee1",
@@ -15,12 +18,23 @@ var person_dict = [{
 		"Type": "Employee"
 	},
 	{
+		"Name": "AEmployee3",
+		"Status": "out",
+		"Time_status_changed": "00:00",
+		"Type": "Employee"
+	},
+	{
 		"Name": "AAVisitor1",
 		"Status": "in",
 		"Time_status_changed": "00:00",
 		"Type": "Visitor"
-	}
-]
+	},
+	{
+		"Name": "ABVisitor2",
+		"Status": "in",
+		"Time_status_changed": "00:00",
+		"Type": "Visitor"
+	}]
 
 func _ready():
 	#low processor usage mode refreshes screen only when needed
@@ -63,3 +77,7 @@ func change_person_status(ID_Number: int) -> String:
 	person_dict[ID_Number].Time_status_changed = time
 	
 	return current_status
+
+func change_status_to_show(new_status: String):
+	status_to_show = new_status
+	emit_signal("status_to_show_changed", new_status)
