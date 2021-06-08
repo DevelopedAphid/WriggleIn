@@ -1,7 +1,6 @@
 extends Node
 
 signal person_list_changed
-signal status_to_show_changed(new_status)
 
 var status_to_show: String = "all"
 
@@ -80,4 +79,3 @@ func change_person_status(ID_Number: int) -> String:
 
 func change_status_to_show(new_status: String):
 	status_to_show = new_status
-	emit_signal("status_to_show_changed", new_status)

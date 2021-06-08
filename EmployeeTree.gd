@@ -1,7 +1,6 @@
 extends Tree
 
 var tree: Tree = self
-var status_to_show: String = "all"
 
 func _ready():
 	tree.select_mode = 1
@@ -11,12 +10,6 @@ func _ready():
 	#Tree needs a root otherwise first TreeItem added becomes the root by default
 	var _root: TreeItem = tree.create_item()
 	
-	_update_tree()
-	
-	Global.connect("person_list_changed", self, "_on_Global_person_list_changed")
-	Global.connect("status_to_show_changed", self, "_on_Global_status_to_show_changed")
-
-func _on_Global_person_list_changed():
 	_update_tree()
 
 func _on_EmployeeTree_button_pressed(item, column, id):
@@ -38,11 +31,12 @@ func _update_tree():
 	
 	for n in Global.person_dict.size():
 		var current_person = Global.person_dict[n]
-		if status_to_show == "all":
+		if Global.status_to_show == "all":
 			load_person_into_tree(current_person)
 		else:
-			if current_person.Status == status_to_show:
+			if current_person.Status == Global.status_to_show:
 				load_person_into_tree(current_person)
+				#TODO: if type == global.typetoshow then load
 
 func load_person_into_tree(current_person):
 	var current_tree_item: TreeItem = tree.create_item()
@@ -55,8 +49,3 @@ func load_person_into_tree(current_person):
 	elif current_person.Status == "out":
 		current_tree_item.add_button(4, load("res://icon_red.png"))
 	current_tree_item.set_text(5, str(current_person.ID))
-
-func _on_Global_status_to_show_changed(new_status):
-	print(new_status)
-	status_to_show = new_status
-	_update_tree()
