@@ -10,7 +10,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EmployeePanel" type="Panel" parent="."]
+[node name="PersonPanel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -18,7 +18,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EmployeeTree" type="Tree" parent="EmployeePanel"]
+[node name="PersonTree" type="Tree" parent="PersonPanel"]
 margin_left = 31.0
 margin_top = 21.0
 margin_right = 992.0
@@ -29,12 +29,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackButton" type="Button" parent="EmployeePanel"]
+[node name="BackButton" type="Button" parent="PersonPanel"]
 margin_left = 40.0
 margin_top = 545.0
 margin_right = 123.0
 margin_bottom = 565.0
 text = "Back"
 
-[connection signal="button_pressed" from="EmployeePanel/EmployeeTree" to="EmployeePanel/EmployeeTree" method="_on_EmployeeTree_button_pressed"]
-[connection signal="button_up" from="EmployeePanel/BackButton" to="EmployeePanel" method="_on_BackButton_button_up"]
+[node name="VisitorNameTextEdit" type="TextEdit" parent="PersonPanel"]
+margin_left = 152.0
+margin_top = 535.0
+margin_right = 462.0
+margin_bottom = 575.0
+
+[node name="VisitorNameEnterButton" type="Button" parent="PersonPanel"]
+margin_left = 472.0
+margin_top = 539.0
+margin_right = 653.0
+margin_bottom = 572.0
+text = "Add visitor"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_pressed" from="PersonPanel/PersonTree" to="PersonPanel/PersonTree" method="_on_EmployeeTree_button_pressed"]
+[connection signal="button_up" from="PersonPanel/BackButton" to="PersonPanel" method="_on_BackButton_button_up"]
+[connection signal="button_up" from="PersonPanel/VisitorNameEnterButton" to="PersonPanel" method="_on_VisitorNameEnterButton_button_up"]

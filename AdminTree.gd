@@ -12,11 +12,11 @@ func _ready():
 	
 	_update_tree()
 	
+# warning-ignore:return_value_discarded
 	Global.connect("person_list_changed", self, "_on_Global_person_list_changed")
 
 func _on_Global_person_list_changed():
 	_update_tree()
-
 
 func _update_tree():
 	tree.clear()
@@ -26,10 +26,11 @@ func _update_tree():
 	for n in Global.person_dict.size():
 		var current_tree_item: TreeItem = tree.create_item()
 		var current_person = Global.person_dict[n]
-		current_tree_item.set_icon(0,load("res://icon.png"))
-		current_tree_item.set_text(1,current_person.Name)
-		current_tree_item.add_button(2, load("res://icon_red.png"))
-		current_tree_item.set_text(3, str(current_person.ID))
+		if current_person.Type == "Employee":
+			current_tree_item.set_icon(0,load("res://art/person.svg"))
+			current_tree_item.set_text(1,current_person.Name)
+			current_tree_item.add_button(2, load("res://art/bin.svg"))
+			current_tree_item.set_text(3, str(current_person.ID))
 
 
 func _on_AdminTree_button_pressed(item, _column, _id):

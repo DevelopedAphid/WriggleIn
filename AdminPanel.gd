@@ -4,8 +4,8 @@ func _ready():
 	pass 
 	#TODO: populate list here so people can be removed from this screen
 
-
 func _on_BackButton_button_up():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://MainScreen.tscn")
 
 

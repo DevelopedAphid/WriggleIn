@@ -3,6 +3,7 @@ extends Node
 signal person_list_changed
 
 var status_to_show: String = "all"
+var person_type_to_show: String = "all"
 
 var person_dict = [{
 		"Name": "Employee1",
@@ -49,10 +50,9 @@ func _ready():
 func assign_id_numbers():
 	for n in person_dict.size():
 		person_dict[n].ID = n
-	print(person_dict)
 
 func add_new_person(Name: String, Type: String):
-	var new_person_dict = {"Name": Name, "Type": Type, "Status": "out", "Time_status_changed": "00:00"}
+	var new_person_dict = {"Name": Name, "Type": Type, "Status": "in", "Time_status_changed": "00:00"}
 	person_dict.append(new_person_dict)
 	assign_id_numbers()
 	
@@ -79,3 +79,15 @@ func change_person_status(ID_Number: int) -> String:
 
 func change_status_to_show(new_status: String):
 	status_to_show = new_status
+
+func change_person_type_to_show(new_status: String):
+	person_type_to_show = new_status
+
+func remove_previous_visitors():
+	var people_to_remove = []
+	for n in person_dict.size():
+		var current_person = person_dict[n]
+		if current_person.Type == "Visitor" && current_person.Status == "out":
+			people_to_remove.append(current_person.ID)
+	for n in people_to_remove.size():
+		Global.remove_a_person(people_to_remove[n])
