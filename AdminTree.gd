@@ -24,9 +24,9 @@ func _update_tree():
 	var _root: TreeItem = tree.create_item()
 	
 	for n in Global.person_dict.size():
-		var current_tree_item: TreeItem = tree.create_item()
 		var current_person = Global.person_dict[n]
 		if current_person.Type == "Employee":
+			var current_tree_item: TreeItem = tree.create_item()
 			current_tree_item.set_icon(0,load("res://art/person.svg"))
 			current_tree_item.set_text(1,current_person.Name)
 			current_tree_item.add_button(2, load("res://art/bin.svg"))

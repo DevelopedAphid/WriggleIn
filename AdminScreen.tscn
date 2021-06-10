@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://AdminPanel.gd" type="Script" id=1]
 [ext_resource path="res://AdminTree.gd" type="Script" id=2]
+[ext_resource path="res://fonts/Open_Sans_Light.tres" type="DynamicFont" id=3]
+[ext_resource path="res://art/emergency_exit.svg" type="Texture" id=4]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AdminPanel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -19,13 +24,15 @@ __meta__ = {
 margin_left = 10.0
 margin_top = 11.0
 margin_right = 284.0
-margin_bottom = 39.0
+margin_bottom = 82.0
+custom_fonts/font = ExtResource( 3 )
 
 [node name="EnterButton" type="Button" parent="AdminPanel"]
-margin_left = 15.0287
-margin_top = 47.655
-margin_right = 136.029
-margin_bottom = 67.655
+margin_left = 9.36546
+margin_top = 138.267
+margin_right = 278.365
+margin_bottom = 199.267
+custom_fonts/font = ExtResource( 3 )
 text = "Add employee"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -33,10 +40,14 @@ __meta__ = {
 
 [node name="BackButton" type="Button" parent="AdminPanel"]
 margin_left = 15.7668
-margin_top = 79.0676
+margin_top = 211.21
 margin_right = 114.767
-margin_bottom = 99.0676
+margin_bottom = 272.21
+custom_fonts/font = ExtResource( 3 )
 text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AdminTree" type="Tree" parent="AdminPanel"]
 margin_left = 315.0
@@ -44,6 +55,15 @@ margin_top = 14.0
 margin_right = 891.0
 margin_bottom = 336.0
 script = ExtResource( 2 )
+
+[node name="EvacuationButton" type="Button" parent="AdminPanel"]
+margin_left = 43.4182
+margin_top = 358.672
+margin_right = 255.418
+margin_bottom = 567.672
+icon = ExtResource( 4 )
+flat = true
+expand_icon = true
 
 [connection signal="button_up" from="AdminPanel/EnterButton" to="AdminPanel" method="_on_EnterButton_button_up"]
 [connection signal="button_up" from="AdminPanel/BackButton" to="AdminPanel" method="_on_BackButton_button_up"]
