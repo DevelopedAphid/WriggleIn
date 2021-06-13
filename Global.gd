@@ -91,3 +91,16 @@ func remove_previous_visitors():
 			people_to_remove.append(current_person.ID)
 	for n in people_to_remove.size():
 		Global.remove_a_person(people_to_remove[n])
+
+func save_employee_list():
+	var saved_list = File.new()
+	saved_list.open("user://employee_list.dat", File.WRITE)
+	saved_list.store_string(str(person_dict))
+	saved_list.close()
+
+func load_employee_list() -> String:
+	var list_to_load = File.new()
+	list_to_load.open("user://employee_list.dat", File.READ)
+	var content = list_to_load.get_as_text()
+	list_to_load.close()
+	return content

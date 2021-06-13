@@ -17,3 +17,5 @@ func _on_EnterButton_button_up():
 		Global.add_new_person(person_name, "Employee")
 	
 	text_box.text = ""
+	
+	Global.save_employee_list()
