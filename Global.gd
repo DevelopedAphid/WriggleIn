@@ -5,6 +5,21 @@ signal person_list_changed
 var status_to_show: String = "all"
 var person_type_to_show: String = "all"
 
+var people_dict = {
+	"1": {
+		"Name": "Employee1",
+		"Status": "in",
+		"Time_status_changed": "00:00",
+		"Type": "Employee"
+	},
+	"2": {
+		"Name": "Employee2",
+		"Status": "out",
+		"Time_status_changed": "00:00",
+		"Type": "Employee"
+	}
+}
+
 var person_dict = [{
 		"Name": "Employee1",
 		"Status": "in",
@@ -45,7 +60,13 @@ func _ready():
 	
 	#add ID numbers on ready
 	assign_id_numbers()
-
+	
+	save_people_list()	
+	people_dict = load_people_list()
+	
+	for n in people_dict:
+		if people_dict.has(n):
+			print(n + ":" + people_dict.get(n).Name)
 
 func assign_id_numbers():
 	for n in person_dict.size():
@@ -94,13 +115,27 @@ func remove_previous_visitors():
 
 func save_employee_list():
 	var saved_list = File.new()
-	saved_list.open("user://employee_list.dat", File.WRITE)
+	saved_list.open("user://employee_list.json", File.WRITE)
 	saved_list.store_string(str(person_dict))
 	saved_list.close()
 
 func load_employee_list() -> String:
 	var list_to_load = File.new()
-	list_to_load.open("user://employee_list.dat", File.READ)
+	list_to_load.open("user://employee_list.json", File.READ)
 	var content = list_to_load.get_as_text()
+	list_to_load.close()
+	return content
+
+func save_people_list():
+	var saved_list = File.new()
+	saved_list.open("user://people_list.json", File.WRITE)
+	saved_list.store_string(to_json(people_dict))
+	saved_list.close()
+
+func load_people_list() -> Dictionary:
+	var list_to_load = File.new()
+	list_to_load.open("user://people_list.json", File.READ)
+	var content = list_to_load.get_as_text()
+	content = parse_json(content)
 	list_to_load.close()
 	return content
