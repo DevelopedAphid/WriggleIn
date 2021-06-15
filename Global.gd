@@ -5,20 +5,7 @@ signal person_list_changed
 var status_to_show: String = "all"
 var person_type_to_show: String = "all"
 
-var people_dict = {
-	"1": {
-		"Name": "Employee1",
-		"Status": "in",
-		"Time_status_changed": "00:00",
-		"Type": "Employee"
-	},
-	"2": {
-		"Name": "Employee2",
-		"Status": "out",
-		"Time_status_changed": "00:00",
-		"Type": "Employee"
-	}
-}
+var people_dict
 
 var person_dict = [{
 		"Name": "Employee1",
@@ -58,43 +45,40 @@ func _ready():
 	#TODO sort the dictionary alphabetically by name 
 	#TODO stick this all in a sort function once sorting!
 	
-	#add ID numbers on ready
-	assign_id_numbers()
-	
-	save_people_list()	
 	people_dict = load_people_list()
 	
 	for n in people_dict:
 		if people_dict.has(n):
-			print(n + ":" + people_dict.get(n).Name)
+			print(n + ":" + str(people_dict.get(n)))
 
-func assign_id_numbers():
-	for n in person_dict.size():
-		person_dict[n].ID = n
+func get_person(dict_key) -> Dictionary:
+	return people_dict.get(dict_key)
 
 func add_new_person(Name: String, Type: String):
-	var new_person_dict = {"Name": Name, "Type": Type, "Status": "in", "Time_status_changed": "00:00"}
-	person_dict.append(new_person_dict)
-	assign_id_numbers()
+	var new_people_dict = {"Name": Name, "Type": Type, "Status": "in", "Time_status_changed": "00:00"}
+	people_dict[people_dict.size()] = new_people_dict
 	
 	emit_signal("person_list_changed")
 
 func remove_a_person(ID: int):
-	person_dict.remove(ID)
+	people_dict.erase(str(ID))
+	
+	#TODO need to re-seed keys before or maybe after doing this as otherwise you get same key for more than one dictionary
 	
 	emit_signal("person_list_changed")
 
-func change_person_status(ID_Number: int) -> String:
-	var current_status = person_dict[ID_Number].Status
+func change_person_status(ID_Number) -> String:
+	ID_Number = str(ID_Number) #as dictionary expects string not int
+	var current_status = people_dict.get(ID_Number).Status
 	if current_status == "in":
 		current_status = "out"
 	elif current_status == "out":
 		current_status = "in"
 	
-	person_dict[ID_Number].Status = current_status
+	people_dict.get(ID_Number).Status = current_status
 	
 	var time = "%02d:%02d" % [OS.get_datetime().hour, OS.get_datetime().minute]
-	person_dict[ID_Number].Time_status_changed = time
+	people_dict.get(ID_Number).Time_status_changed = time
 	
 	return current_status
 
@@ -106,8 +90,8 @@ func change_person_type_to_show(new_status: String):
 
 func remove_previous_visitors():
 	var people_to_remove = []
-	for n in person_dict.size():
-		var current_person = person_dict[n]
+	for n in people_dict:
+		var current_person = people_dict.get(n)
 		if current_person.Type == "Visitor" && current_person.Status == "out":
 			people_to_remove.append(current_person.ID)
 	for n in people_to_remove.size():
