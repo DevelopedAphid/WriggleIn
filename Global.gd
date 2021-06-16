@@ -7,36 +7,38 @@ var person_type_to_show: String = "all"
 
 var people_dict
 
-var person_dict = [{
+var person_dict = {
+	"1":{
 		"Name": "Employee1",
 		"Status": "in",
 		"Time_status_changed": "00:00",
 		"Type": "Employee"
 	},
-	{
+	"2":{
 		"Name": "AEmployee2",
 		"Status": "out",
 		"Time_status_changed": "00:00",
 		"Type": "Employee"
 	},
-	{
+	"4":{
 		"Name": "AEmployee3",
 		"Status": "out",
 		"Time_status_changed": "00:00",
 		"Type": "Employee"
 	},
-	{
+	"5":{
 		"Name": "AAVisitor1",
 		"Status": "in",
 		"Time_status_changed": "00:00",
 		"Type": "Visitor"
 	},
-	{
+	"7":{
 		"Name": "ABVisitor2",
 		"Status": "in",
 		"Time_status_changed": "00:00",
 		"Type": "Visitor"
-	}]
+	}
+}
 
 func _ready():
 	#low processor usage mode refreshes screen only when needed
@@ -47,23 +49,27 @@ func _ready():
 	
 	people_dict = load_people_list()
 	
-	for n in people_dict:
-		if people_dict.has(n):
-			print(n + ":" + str(people_dict.get(n)))
+	print(people_dict)
 
 func get_person(dict_key) -> Dictionary:
 	return people_dict.get(dict_key)
 
 func add_new_person(Name: String, Type: String):
 	var new_people_dict = {"Name": Name, "Type": Type, "Status": "in", "Time_status_changed": "00:00"}
-	people_dict[people_dict.size()] = new_people_dict
+	people_dict[str(people_dict.size())] = new_people_dict
+	
+	print(people_dict)
 	
 	emit_signal("person_list_changed")
 
-func remove_a_person(ID: int):
-	people_dict.erase(str(ID))
+func remove_a_person(ID):
+	people_dict.erase(ID)
+	var new_people_dict = {}
+	for n in people_dict.size():
+		new_people_dict[str(new_people_dict.size())] = people_dict.get(str(n))
+	people_dict = new_people_dict
 	
-	#TODO need to re-seed keys before or maybe after doing this as otherwise you get same key for more than one dictionary
+	#TODO there is still some string vs int wonkiness causing this to not work every time
 	
 	emit_signal("person_list_changed")
 

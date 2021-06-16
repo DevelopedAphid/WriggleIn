@@ -20,7 +20,6 @@ func _on_Global_person_list_changed():
 
 func _on_EmployeeTree_button_pressed(item, column, id):
 	var person_id = item.get_text(5)
-	#TODO this breaks because I don't have an ID number anymore - need to use dictionary key but not sure how to do that...
 	var new_status = Global.change_person_status(person_id)
 	
 	item.set_text(2,new_status)
