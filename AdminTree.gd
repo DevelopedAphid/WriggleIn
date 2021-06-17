@@ -23,7 +23,7 @@ func _update_tree():
 	#Tree needs a root otherwise first TreeItem added becomes the root by default
 	var _root: TreeItem = tree.create_item()
 	
-	for n in Global.people_dict:
+	for n in Global.people_dict.size():
 		var current_person = Global.get_person(n)
 		if current_person.Type == "Employee":
 			var current_tree_item: TreeItem = tree.create_item()

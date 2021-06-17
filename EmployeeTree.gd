@@ -23,7 +23,7 @@ func _on_EmployeeTree_button_pressed(item, column, id):
 	var new_status = Global.change_person_status(person_id)
 	
 	item.set_text(2,new_status)
-	item.set_text(3,Global.people_dict.get(person_id).Time_status_changed)
+	item.set_text(3,Global.get_person(person_id).Time_status_changed)
 	
 	if new_status == "in":
 		item.set_button(column, id, load("res://art/office_small.svg"))
@@ -35,7 +35,7 @@ func _update_tree():
 	#Tree needs a root otherwise first TreeItem added becomes the root by default
 	var _root: TreeItem = tree.create_item()
 	
-	for n in Global.people_dict:
+	for n in Global.people_dict.size():
 		var current_person = Global.get_person(n)
 		if Global.status_to_show == "all" && Global.person_type_to_show == "all":
 			load_person_into_tree(current_person, n)
@@ -56,4 +56,4 @@ func load_person_into_tree(current_person, person_count):
 		current_tree_item.add_button(4, load("res://art/office_small.svg"))
 	elif current_person.Status == "out":
 		current_tree_item.add_button(4, load("res://art/house_small.svg"))
-	current_tree_item.set_text(5,person_count)
+	current_tree_item.set_text(5,str(person_count))
