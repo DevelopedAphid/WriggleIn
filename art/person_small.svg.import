@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/paper.svg-94c1ccd01b17daf39b76bc800d9561eb.stex"
+path="res://.import/person_small.svg-b3c9c8d530c6243f1698ff3aaf88ebf8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/paper.svg"
-dest_files=[ "res://.import/paper.svg-94c1ccd01b17daf39b76bc800d9561eb.stex" ]
+source_file="res://art/person_small.svg"
+dest_files=[ "res://.import/person_small.svg-b3c9c8d530c6243f1698ff3aaf88ebf8.stex" ]
 
 [params]
 
@@ -31,4 +31,4 @@ process/invert_color=false
 stream=false
 size_limit=0
 detect_3d=true
-svg/scale=5.0
+svg/scale=1.0
