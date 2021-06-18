@@ -9,7 +9,7 @@ func _ready():
 	
 	#Tree needs a root otherwise first TreeItem added becomes the root by default
 	var _root: TreeItem = tree.create_item()
-	
+		
 	_update_tree()
 	
 # warning-ignore:return_value_discarded
@@ -57,3 +57,4 @@ func load_person_into_tree(current_person, person_count):
 	elif current_person.Status == "out":
 		current_tree_item.add_button(4, load("res://art/house_small.svg"))
 	current_tree_item.set_text(5,str(person_count))
+	

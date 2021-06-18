@@ -5,40 +5,7 @@ signal person_list_changed
 var status_to_show: String = "all"
 var person_type_to_show: String = "all"
 
-var people_dict
-
-var person_dict = {
-	"Person 1":{
-		"Name": "Employee1",
-		"Status": "in",
-		"Time_status_changed": "00:00",
-		"Type": "Employee"
-	},
-	"Person 2":{
-		"Name": "AEmployee2",
-		"Status": "out",
-		"Time_status_changed": "00:00",
-		"Type": "Employee"
-	},
-	"Person 4":{
-		"Name": "AEmployee3",
-		"Status": "out",
-		"Time_status_changed": "00:00",
-		"Type": "Employee"
-	},
-	"Person 5":{
-		"Name": "AAVisitor1",
-		"Status": "in",
-		"Time_status_changed": "00:00",
-		"Type": "Visitor"
-	},
-	"Person 7":{
-		"Name": "ABVisitor2",
-		"Status": "in",
-		"Time_status_changed": "00:00",
-		"Type": "Visitor"
-	}
-}
+var people_dict = {}
 
 func _ready():
 	#low processor usage mode refreshes screen only when needed
@@ -56,9 +23,10 @@ func get_person_with_string(dict_key) -> Dictionary:
 	return people_dict.get(dict_key)
 
 func add_new_person(Name: String, Type: String):
-	var new_people_dict = {"Name": Name, "Type": Type, "Status": "in", "Time_status_changed": "00:00"}
+	var new_people_dict = {"Name": Name, "Type": Type, "Status": "in", "Time_status_changed": get_current_time()}
 	people_dict["Person " + str(people_dict.size())] = new_people_dict
 	
+	save_people_list()
 	emit_signal("person_list_changed")
 
 func remove_a_person(ID):
@@ -71,6 +39,7 @@ func remove_a_person(ID):
 	for n in new_people_dict.size():
 		people_dict["Person " + str(n)] = new_people_dict["Person " + str(n)]
 	
+	save_people_list()
 	emit_signal("person_list_changed")
 
 func change_person_status(ID_Number) -> String:
@@ -82,11 +51,13 @@ func change_person_status(ID_Number) -> String:
 		current_status = "in"
 	
 	get_person(ID_Number).Status = current_status
-	
-	var time = "%02d:%02d" % [OS.get_datetime().hour, OS.get_datetime().minute]
-	get_person(ID_Number).Time_status_changed = time
+	get_person(ID_Number).Time_status_changed = get_current_time()
 	
 	return current_status
+
+func get_current_time() -> String:
+	var time = "%02d:%02d" % [OS.get_datetime().hour, OS.get_datetime().minute]
+	return time
 
 func change_status_to_show(new_status: String):
 	status_to_show = new_status
@@ -99,22 +70,9 @@ func remove_previous_visitors():
 	for n in people_dict.size():
 		var current_person = get_person(n)
 		if current_person.Type == "Visitor" && current_person.Status == "out":
-			people_to_remove.append(current_person.ID)
+			people_to_remove.append(n)
 	for n in people_to_remove.size():
-		Global.remove_a_person(people_to_remove[n])
-
-func save_employee_list():
-	var saved_list = File.new()
-	saved_list.open("user://employee_list.json", File.WRITE)
-	saved_list.store_string(str(person_dict))
-	saved_list.close()
-
-func load_employee_list() -> String:
-	var list_to_load = File.new()
-	list_to_load.open("user://employee_list.json", File.READ)
-	var content = list_to_load.get_as_text()
-	list_to_load.close()
-	return content
+		Global.remove_a_person(get_person(people_to_remove[n]))
 
 func save_people_list():
 	var saved_list = File.new()

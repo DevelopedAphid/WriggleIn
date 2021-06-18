@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://AdminPanel.gd" type="Script" id=1]
 [ext_resource path="res://AdminTree.gd" type="Script" id=2]
 [ext_resource path="res://fonts/Open_Sans_Light.tres" type="DynamicFont" id=3]
 [ext_resource path="res://art/emergency_exit.svg" type="Texture" id=4]
+[ext_resource path="res://fonts/Open_Sans_Light_20.tres" type="DynamicFont" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.988235, 0.627451, 0.286275, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -15,6 +22,7 @@ __meta__ = {
 [node name="AdminPanel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -32,7 +40,7 @@ margin_left = 9.36546
 margin_top = 138.267
 margin_right = 278.365
 margin_bottom = 199.267
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 5 )
 text = "Add employee"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -43,7 +51,7 @@ margin_left = 15.7668
 margin_top = 211.21
 margin_right = 114.767
 margin_bottom = 272.21
-custom_fonts/font = ExtResource( 3 )
+custom_fonts/font = ExtResource( 5 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -52,9 +60,15 @@ __meta__ = {
 [node name="AdminTree" type="Tree" parent="AdminPanel"]
 margin_left = 315.0
 margin_top = 14.0
-margin_right = 891.0
-margin_bottom = 336.0
+margin_right = 999.0
+margin_bottom = 572.0
+custom_styles/bg = SubResource( 2 )
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="EvacuationButton" type="Button" parent="AdminPanel"]
 margin_left = 43.4182
