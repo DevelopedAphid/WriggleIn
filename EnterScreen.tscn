@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://EnterPanel.gd" type="Script" id=1]
 [ext_resource path="res://PersonTree.gd" type="Script" id=2]
@@ -9,6 +9,15 @@
 bg_color = Color( 0.988235, 0.627451, 0.286275, 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 
 [node name="Control" type="Control"]
@@ -46,6 +55,7 @@ margin_left = 44.7568
 margin_top = 533.108
 margin_right = 140.757
 margin_bottom = 594.108
+custom_styles/normal = SubResource( 5 )
 custom_fonts/font = ExtResource( 3 )
 text = "Back"
 __meta__ = {
@@ -57,6 +67,7 @@ margin_left = 152.0
 margin_top = 535.0
 margin_right = 696.0
 margin_bottom = 593.0
+custom_styles/normal = SubResource( 3 )
 custom_fonts/font = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -67,6 +78,7 @@ margin_left = 707.463
 margin_top = 531.865
 margin_right = 908.463
 margin_bottom = 592.865
+custom_styles/normal = SubResource( 4 )
 custom_fonts/font = ExtResource( 3 )
 text = "Add visitor"
 __meta__ = {

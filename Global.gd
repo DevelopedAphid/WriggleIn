@@ -11,10 +11,8 @@ func _ready():
 	#low processor usage mode refreshes screen only when needed
 	OS.low_processor_usage_mode = true
 	
-	#TODO sort the dictionary alphabetically by name 
-	#TODO stick this all in a sort function once sorting!
-	
 	people_dict = load_people_list()
+	sort_person_list()
 
 func get_person(dict_key) -> Dictionary:
 	return people_dict.get("Person " + str(dict_key))
@@ -26,6 +24,7 @@ func add_new_person(Name: String, Type: String):
 	var new_people_dict = {"Name": Name, "Type": Type, "Status": "in", "Time_status_changed": get_current_time()}
 	people_dict["Person " + str(people_dict.size())] = new_people_dict
 	
+	sort_person_list()
 	save_people_list()
 	emit_signal("person_list_changed")
 
@@ -39,8 +38,29 @@ func remove_a_person(ID):
 	for n in new_people_dict.size():
 		people_dict["Person " + str(n)] = new_people_dict["Person " + str(n)]
 	
+	sort_person_list()
 	save_people_list()
 	emit_signal("person_list_changed")
+
+func sort_person_list():
+	var unsorted_people = []
+	for n in people_dict.size():
+		unsorted_people.append(get_person(n))
+	
+	unsorted_people.sort_custom(self, "custom_comparison")
+	
+	var new_people_dict = {}
+	for n in unsorted_people.size():
+		new_people_dict["Person " + str(n)] = unsorted_people[n]
+	
+	people_dict.clear()
+	people_dict = new_people_dict
+
+func custom_comparison(a,b):
+	if typeof(a) != typeof(b):
+		return typeof(a) < typeof(b)
+	else:
+		return a.Name < b.Name
 
 func change_person_status(ID_Number) -> String:
 	ID_Number = str(ID_Number) #as dictionary expects string not int
