@@ -79,6 +79,19 @@ icon = ExtResource( 4 )
 flat = true
 expand_icon = true
 
+[node name="FileDialog" type="FileDialog" parent="AdminPanel"]
+margin_left = 323.0
+margin_top = 43.0
+margin_right = 990.0
+margin_bottom = 557.0
+rect_min_size = Vector2( 150, 52.5 )
+window_title = "Choose an image"
+mode = 0
+access = 2
+current_dir = "/home/michael/Godot/WriggleIn"
+current_path = "/home/michael/Godot/WriggleIn/"
+
 [connection signal="button_up" from="AdminPanel/EnterButton" to="AdminPanel" method="_on_EnterButton_button_up"]
 [connection signal="button_up" from="AdminPanel/BackButton" to="AdminPanel" method="_on_BackButton_button_up"]
 [connection signal="button_pressed" from="AdminPanel/AdminTree" to="AdminPanel/AdminTree" method="_on_AdminTree_button_pressed"]
+[connection signal="file_selected" from="AdminPanel/FileDialog" to="AdminPanel" method="_on_FileDialog_file_selected"]

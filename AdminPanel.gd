@@ -17,3 +17,8 @@ func _on_EnterButton_button_up():
 		Global.add_new_person(person_name, "Employee")
 	
 	text_box.text = ""
+
+
+func _on_FileDialog_file_selected(path):
+	print(path)
+	$FileDialog.hide()

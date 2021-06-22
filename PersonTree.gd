@@ -7,9 +7,12 @@ func _ready():
 	tree.hide_root = true
 	tree.columns = 6
 	
+	tree.set_column_expand(1,true)
+	tree.set_column_min_width(1,4) #this and column expand == true means that column will take up more of the screen in a ratio
+	
 	#Tree needs a root otherwise first TreeItem added becomes the root by default
 	var _root: TreeItem = tree.create_item()
-		
+	
 	_update_tree()
 	
 # warning-ignore:return_value_discarded
@@ -22,8 +25,8 @@ func _on_EmployeeTree_button_pressed(item, column, id):
 	var person_id = item.get_text(5)
 	var new_status = Global.change_person_status(person_id)
 	
-	item.set_text(2,new_status)
-	item.set_text(3,Global.get_person(person_id).Time_status_changed)
+	item.set_text(2,Global.get_person(person_id).Time_status_changed)
+	item.set_text(3,new_status)
 	
 	if new_status == "in":
 		item.set_button(column, id, load("res://art/office_small.svg"))
@@ -50,11 +53,11 @@ func load_person_into_tree(current_person, person_count):
 	var current_tree_item: TreeItem = tree.create_item()
 	current_tree_item.set_icon(0,load("res://art/person_small.svg"))
 	current_tree_item.set_text(1,current_person.Name)
-	current_tree_item.set_text(2,current_person.Status)
-	current_tree_item.set_text(3,current_person.Time_status_changed)
+	current_tree_item.set_text(2,current_person.Time_status_changed)
+	current_tree_item.set_text(3,current_person.Status)
+	current_tree_item.set_text_align(3,TreeItem.ALIGN_CENTER)
 	if current_person.Status == "in":
 		current_tree_item.add_button(4, load("res://art/office_small.svg"))
 	elif current_person.Status == "out":
 		current_tree_item.add_button(4, load("res://art/house_small.svg"))
 	current_tree_item.set_text(5,str(person_count))
-	

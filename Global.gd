@@ -92,7 +92,7 @@ func remove_previous_visitors():
 		if current_person.Type == "Visitor" && current_person.Status == "out":
 			people_to_remove.append(n)
 	for n in people_to_remove.size():
-		Global.remove_a_person(get_person(people_to_remove[n]))
+		Global.remove_a_person(people_to_remove[n])
 
 func save_people_list():
 	var saved_list = File.new()

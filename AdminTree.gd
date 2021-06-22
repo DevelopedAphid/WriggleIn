@@ -27,13 +27,16 @@ func _update_tree():
 		var current_person = Global.get_person(n)
 		if current_person.Type == "Employee":
 			var current_tree_item: TreeItem = tree.create_item()
-			current_tree_item.set_icon(0,load("res://art/person_small.svg"))
+			current_tree_item.add_button(0,load("res://art/person_small.svg"))
 			current_tree_item.set_text(1,current_person.Name)
 			current_tree_item.add_button(2, load("res://art/bin.svg"))
 			current_tree_item.set_text(3,str(n))
 
 
-func _on_AdminTree_button_pressed(item, _column, _id):
-	var person_id = item.get_text(3)
-	print("id to be deleted: " + person_id)
-	Global.remove_a_person(person_id)
+func _on_AdminTree_button_pressed(item, column, _id):
+	if column == 0:
+		get_parent().get_node("FileDialog").popup()
+		#TODO:replace this with a signal
+	elif column == 2:
+		var person_id = item.get_text(3)
+		Global.remove_a_person(person_id)
