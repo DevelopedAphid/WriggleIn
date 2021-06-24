@@ -1,5 +1,7 @@
 extends Panel
 
+var dynamic_font = load("res://fonts/Open_Sans_Light_20.tres")
+
 func _ready():
 	if Global.person_type_to_show == "Visitor":
 		$VisitorNameTextEdit.visible = true
@@ -7,6 +9,31 @@ func _ready():
 	else:
 		$VisitorNameTextEdit.visible = false
 		$VisitorNameEnterButton.visible = false
+	
+	update_list()
+
+func update_list():
+	for n in Global.people_dict.size():
+		var current_person = Global.get_person(n)
+		
+		var name_label = Label.new()
+		$PersonScrollContainer/PersonVBoxContainer/PersonGridContainer.add_child(name_label)
+		name_label.text = current_person.Name
+		name_label.add_font_override("font", dynamic_font)
+		
+		var time_label = Label.new()
+		$PersonScrollContainer/PersonVBoxContainer/PersonGridContainer.add_child(time_label)
+		time_label.text = current_person.Time_status_changed
+		time_label.add_font_override("font", dynamic_font)
+		
+		var status_label = Label.new()
+		$PersonScrollContainer/PersonVBoxContainer/PersonGridContainer.add_child(status_label)
+		status_label.text = current_person.Status
+		status_label.add_font_override("font", dynamic_font)
+		
+		var status_button = Button.new()
+		$PersonScrollContainer/PersonVBoxContainer/PersonGridContainer.add_child(status_button)
+		status_button.icon = load("res://art/office_small.svg")
 
 func _on_BackButton_button_up():
 # warning-ignore:return_value_discarded
