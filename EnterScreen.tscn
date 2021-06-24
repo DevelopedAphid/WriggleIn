@@ -9,9 +9,6 @@
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.988235, 0.627451, 0.286275, 1 )
 
-[sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
-
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 
@@ -22,6 +19,9 @@ bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 
 [sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 
 [node name="Control" type="Control"]
@@ -45,7 +45,7 @@ margin_left = 26.0
 margin_top = 79.0
 margin_right = 942.0
 margin_bottom = 181.0
-custom_styles/bg = SubResource( 6 )
+custom_styles/bg = SubResource( 2 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -63,7 +63,7 @@ margin_top = 105.0
 margin_right = 730.0
 margin_bottom = 236.0
 mouse_filter = 1
-custom_styles/bg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
 custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 columns = 4
@@ -77,7 +77,7 @@ margin_left = 25.7295
 margin_top = 13.4245
 margin_right = 121.73
 margin_bottom = 74.4245
-custom_styles/normal = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Back"
@@ -90,7 +90,7 @@ margin_left = 230.488
 margin_top = 11.7489
 margin_right = 774.488
 margin_bottom = 69.7489
-custom_styles/normal = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 custom_fonts/font = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -101,7 +101,7 @@ margin_left = 785.951
 margin_top = 8.61391
 margin_right = 986.951
 margin_bottom = 69.6139
-custom_styles/normal = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Add visitor"

@@ -15,29 +15,37 @@ func _ready():
 func update_list():
 	for n in Global.people_dict.size():
 		var current_person = Global.get_person(n)
+		var grid_container = $PersonScrollContainer/PersonVBoxContainer/PersonGridContainer
 		
 		var name_label = Label.new()
-		$PersonScrollContainer/PersonVBoxContainer/PersonGridContainer.add_child(name_label)
+		grid_container.add_child(name_label)
 		name_label.text = current_person.Name
 		name_label.add_font_override("font", dynamic_font)
 		
 		var time_label = Label.new()
-		$PersonScrollContainer/PersonVBoxContainer/PersonGridContainer.add_child(time_label)
+		grid_container.add_child(time_label)
 		time_label.text = current_person.Time_status_changed
 		time_label.add_font_override("font", dynamic_font)
 		
 		var status_label = Label.new()
-		$PersonScrollContainer/PersonVBoxContainer/PersonGridContainer.add_child(status_label)
+		grid_container.add_child(status_label)
 		status_label.text = current_person.Status
 		status_label.add_font_override("font", dynamic_font)
 		
 		var status_button = Button.new()
-		$PersonScrollContainer/PersonVBoxContainer/PersonGridContainer.add_child(status_button)
+		grid_container.add_child(status_button)
+		#TODO: this icon should depend on status
 		status_button.icon = load("res://art/office_small.svg")
+		status_button.connect("pressed", self, "_on_StatusButton_pressed", [(grid_container.get_child_count()-1)/grid_container.columns])
 
 func _on_BackButton_button_up():
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://MainScreen.tscn")
+
+func _on_StatusButton_pressed(row_index):
+	var current_person = Global.get_person(row_index)
+	print(str(current_person.Name))
+	#TODO: change status and update list
 
 
 func _on_VisitorNameEnterButton_button_up():
