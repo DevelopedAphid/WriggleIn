@@ -1,5 +1,7 @@
 extends Node
 
+#new icons are from flaticon.com by freepik
+
 signal person_list_changed
 
 var status_to_show: String = "all"
@@ -72,6 +74,19 @@ func change_person_status(ID_Number) -> String:
 	
 	get_person(ID_Number).Status = current_status
 	get_person(ID_Number).Time_status_changed = get_current_time()
+	
+	return current_status
+
+func change_person_status_from_string(person) -> String:
+	var current_person = get_person_with_string(person)
+	var current_status = current_person.Status
+	if current_status == "in":
+		current_status = "out"
+	elif current_status == "out":
+		current_status = "in"
+	
+	current_person.Status = current_status
+	current_person.Time_status_changed = get_current_time()
 	
 	return current_status
 

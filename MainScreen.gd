@@ -27,7 +27,7 @@ func _on_LeaveButton_button_up():
 
 func _on_AllEmployeesButton_button_up():
 	Global.change_status_to_show("all")
-	Global.change_person_type_to_show("Employee")
+	Global.change_person_type_to_show("all")
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://EnterScreen.tscn")
 
