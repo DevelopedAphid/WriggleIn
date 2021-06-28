@@ -1,6 +1,6 @@
 extends Node
 
-#new icons are from flaticon.com by freepik
+#icons are from flaticon.com by freepik and roundicons and pixel perfect
 
 signal person_list_changed
 

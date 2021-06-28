@@ -22,7 +22,7 @@ func create_list():
 
 func load_person_into_list(current_person, person_string):
 	var grid_container = $PersonScrollContainer/PersonVBoxContainer/PersonGridContainer
-		
+	
 	var name_label = Label.new()
 	grid_container.add_child(name_label)
 	name_label.text = current_person.Name
@@ -42,10 +42,14 @@ func load_person_into_list(current_person, person_string):
 	var status_button = Button.new()
 	grid_container.add_child(status_button)
 	#TODO: this icon should depend on current status
-	status_button.icon = load("res://art/office_small.svg")
+	if current_person.Status == "in":
+		status_button.icon = load("res://icons/switch_on.svg")
+	elif current_person.Status == "out":
+		status_button.icon = load("res://icons/switch_off.svg")
 	status_button.flat = true
 	status_button.grow_horizontal = false
 	status_button.rect_min_size = Vector2(32,32)
+	status_button.expand_icon = true
 	status_button.connect("pressed", self, "_on_StatusButton_pressed", [person_string, status_button])
 
 func _on_BackButton_button_up():
@@ -53,9 +57,6 @@ func _on_BackButton_button_up():
 	get_tree().change_scene("res://MainScreen.tscn")
 
 func _on_StatusButton_pressed(person, button):
-	var current_person = Global.get_person_with_string(person)
-	print(str(current_person.Name))
-	#TODO: change status and update list
 # warning-ignore:return_value_discarded
 	var new_status = Global.change_person_status_from_string(person)
 	
