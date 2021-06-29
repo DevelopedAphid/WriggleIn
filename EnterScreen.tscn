@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://EnterPanel.gd" type="Script" id=1]
 [ext_resource path="res://PersonTree.gd" type="Script" id=2]
@@ -7,17 +7,18 @@
 [ext_resource path="res://icons/left_arrow.svg" type="Texture" id=5]
 [ext_resource path="res://PersonScrollContainer.gd" type="Script" id=6]
 [ext_resource path="res://icons/hamburger_icon.svg" type="Texture" id=7]
+[ext_resource path="res://fonts/Open_Sans_Reg_40.tres" type="DynamicFont" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.988235, 0.627451, 0.286275, 1 )
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 
 [sub_resource type="StyleBoxFlat" id=5]
@@ -45,7 +46,7 @@ __meta__ = {
 [node name="TopPanel" type="Panel" parent="PersonPanel"]
 anchor_right = 1.0
 margin_bottom = 65.0
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -55,7 +56,7 @@ margin_left = 24.9405
 margin_top = 80.0595
 margin_right = 989.941
 margin_bottom = 569.059
-custom_styles/bg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -73,7 +74,7 @@ margin_top = 105.0
 margin_right = 730.0
 margin_bottom = 236.0
 mouse_filter = 1
-custom_styles/bg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
 custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 columns = 4
@@ -130,6 +131,7 @@ __meta__ = {
 }
 
 [node name="GridContainer" type="GridContainer" parent="PersonPanel"]
+visible = false
 margin_left = 39.0
 margin_top = 96.0
 margin_right = 650.0
@@ -140,22 +142,23 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="PersonPanel/GridContainer"]
-margin_top = 3.0
-margin_right = 32.0
-margin_bottom = 17.0
+margin_right = 91.0
+margin_bottom = 55.0
+custom_fonts/font = ExtResource( 8 )
 text = "hello"
 
 [node name="Label2" type="Label" parent="PersonPanel/GridContainer"]
-margin_left = 36.0
-margin_top = 3.0
-margin_right = 68.0
-margin_bottom = 17.0
+margin_left = 95.0
+margin_top = 20.0
+margin_right = 345.0
+margin_bottom = 34.0
+rect_min_size = Vector2( 250, 0 )
 text = "hello"
 
 [node name="Button" type="Button" parent="PersonPanel/GridContainer"]
-margin_left = 72.0
-margin_right = 84.0
-margin_bottom = 20.0
+margin_left = 349.0
+margin_right = 361.0
+margin_bottom = 55.0
 
 [connection signal="button_pressed" from="PersonPanel/PersonTree" to="PersonPanel/PersonTree" method="_on_EmployeeTree_button_pressed"]
 [connection signal="button_up" from="PersonPanel/BackButton" to="PersonPanel" method="_on_BackButton_button_up"]
