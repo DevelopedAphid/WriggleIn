@@ -1,6 +1,12 @@
 extends Panel
 
 var dynamic_font = load("res://fonts/Open_Sans_Reg_40.tres")
+var screen_size
+var name_width_percent = 0.50
+var time_width_percent = 0.20
+var status_width_percent = 0.15
+var button_width_percent = 0.10
+var line_height
 
 func _ready():
 	if Global.person_type_to_show == "Visitor":
@@ -10,12 +16,15 @@ func _ready():
 		$VisitorNameTextEdit.visible = false
 		$VisitorNameEnterButton.visible = false
 	
+	screen_size = get_viewport_rect().size
+	line_height = (screen_size.y-65)/8
+	
 	create_list()
 	
 	#TODO: set fonts, colours, and dimensions up here
 
 func create_list():
-	load_headings_into_list()
+#	load_headings_into_list()
 	
 	for n in Global.people_dict:
 		var current_person = Global.get_person_with_string(n)
@@ -29,10 +38,9 @@ func load_headings_into_list():
 	
 	var name_label = Label.new()
 	grid_container.add_child(name_label)
-	name_label.text = "Name"
+	name_label.text = "  Name"
 	name_label.add_font_override("font", dynamic_font)
 	name_label.add_color_override("font_color", Color(0,0,0,1))
-	name_label.rect_min_size = Vector2(350, 45)
 	
 	var time_label = Label.new()
 	grid_container.add_child(time_label)
@@ -58,16 +66,17 @@ func load_person_into_list(current_person, person_string):
 	
 	var name_label = Label.new()
 	grid_container.add_child(name_label)
-	name_label.text = current_person.Name
+	name_label.text = "  " + current_person.Name
 	name_label.add_font_override("font", dynamic_font)
 	name_label.add_color_override("font_color", Color(0,0,0,0.8))
-	name_label.rect_min_size = Vector2(350, 45)
+	name_label.rect_min_size = Vector2(name_width_percent*screen_size.x, line_height)
 	
 	var time_label = Label.new()
 	grid_container.add_child(time_label)
 	time_label.text = current_person.Time_status_changed
 	time_label.add_font_override("font", dynamic_font)
 	time_label.add_color_override("font_color", Color(0,0,0,0.8))
+	time_label.rect_min_size = Vector2(time_width_percent*screen_size.x, line_height)
 	
 	#TODO: remove in/out labels??
 	var status_label = Label.new()
@@ -75,6 +84,7 @@ func load_person_into_list(current_person, person_string):
 	status_label.text = current_person.Status
 	status_label.add_font_override("font", dynamic_font)
 	status_label.add_color_override("font_color", Color(0,0,0,0.8))
+	status_label.rect_min_size = Vector2(status_width_percent*screen_size.x, line_height)
 	
 	var status_button = Button.new()
 	grid_container.add_child(status_button)
@@ -83,8 +93,7 @@ func load_person_into_list(current_person, person_string):
 	elif current_person.Status == "out":
 		status_button.icon = load("res://icons/switch_off.svg")
 	status_button.flat = true
-#	status_button.grow_horizontal = false
-	status_button.rect_min_size = Vector2(45,45)
+	status_button.rect_min_size = Vector2(button_width_percent*screen_size.x, line_height)
 	status_button.expand_icon = true
 	status_button.connect("pressed", self, "_on_StatusButton_pressed", [person_string, status_button, grid_container.get_child_count()])
 
