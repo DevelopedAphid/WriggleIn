@@ -8,6 +8,10 @@ var swipe_start
 var swipe_mouse_start
 var swipe_mouse_times = []
 var swipe_mouse_positions = []
+var bg_scroll_container
+
+func _ready():
+	bg_scroll_container = get_parent().get_node("BackgroundScrollContainer")
 
 func _input(ev):
 	if ev is InputEventMouseButton:
@@ -38,10 +42,20 @@ func _input(ev):
 				tween.interpolate_method(self, 'set_v_scroll', source.y, target.y, flick_dur, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 				tween.interpolate_callback(tween, flick_dur, 'queue_free')
 				tween.start()
+				
+				var tween_bg = Tween.new()
+				add_child(tween_bg)
+				var delta_bg = ev.position - flick_start
+				var target_bg = source - delta_bg * flick_dur * 15.0
+				tween_bg.interpolate_method(bg_scroll_container, 'set_h_scroll', source.x, target_bg.x, flick_dur, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+				tween_bg.interpolate_method(bg_scroll_container, 'set_v_scroll', source.y, target_bg.y, flick_dur, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+				tween_bg.interpolate_callback(tween_bg, flick_dur, 'queue_free')
+				tween_bg.start()
 			swiping = false
 	elif swiping and ev is InputEventMouseMotion:
 		var delta = ev.position - swipe_mouse_start
 		set_h_scroll(swipe_start.x - delta.x)
 		set_v_scroll(swipe_start.y - delta.y)
+		bg_scroll_container.set_v_scroll(swipe_start.y - delta.y)
 		swipe_mouse_times.append(OS.get_ticks_msec())
 		swipe_mouse_positions.append(ev.position)

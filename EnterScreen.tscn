@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://EnterPanel.gd" type="Script" id=1]
 [ext_resource path="res://PersonTree.gd" type="Script" id=2]
@@ -10,13 +10,10 @@
 [ext_resource path="res://fonts/Open_Sans_Reg_40.tres" type="DynamicFont" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
+bg_color = Color( 0.945098, 0.945098, 0.945098, 0.945098 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.988235, 0.627451, 0.286275, 1 )
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.870588, 0.870588, 0.870588, 1 )
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
@@ -51,11 +48,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BackgroundScrollContainer" type="ScrollContainer" parent="PersonPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 65.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundVBoxContainer" type="VBoxContainer" parent="PersonPanel/BackgroundScrollContainer"]
+
 [node name="PersonScrollContainer" type="ScrollContainer" parent="PersonPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 65.0
-custom_styles/bg = SubResource( 3 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -106,10 +112,12 @@ __meta__ = {
 }
 
 [node name="VisitorNameTextEdit" type="TextEdit" parent="PersonPanel"]
-margin_left = 230.488
-margin_top = 11.7489
-margin_right = 774.488
-margin_bottom = 69.7489
+anchor_left = 0.05
+anchor_top = 0.15
+anchor_right = 0.7
+anchor_bottom = 0.3
+margin_right = -60.8
+rect_min_size = Vector2( 700, 65 )
 custom_styles/normal = SubResource( 5 )
 custom_fonts/font = ExtResource( 3 )
 __meta__ = {
@@ -117,10 +125,10 @@ __meta__ = {
 }
 
 [node name="VisitorNameEnterButton" type="Button" parent="PersonPanel"]
-margin_left = 660.934
-margin_top = 77.479
-margin_right = 861.934
-margin_bottom = 138.479
+anchor_left = 0.75
+anchor_top = 0.15
+anchor_right = 0.95
+anchor_bottom = 0.3
 custom_styles/normal = SubResource( 6 )
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -129,36 +137,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="PersonPanel"]
-visible = false
-margin_left = 39.0
-margin_top = 96.0
-margin_right = 650.0
-margin_bottom = 345.0
-columns = 3
+[node name="CurrentVistorsLabel" type="Label" parent="PersonPanel"]
+margin_left = 8.90897
+margin_top = 181.743
+margin_right = 297.909
+margin_bottom = 236.743
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Current Visitors"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="PersonPanel/GridContainer"]
-margin_right = 91.0
-margin_bottom = 55.0
-custom_fonts/font = ExtResource( 8 )
-text = "hello"
-
-[node name="Label2" type="Label" parent="PersonPanel/GridContainer"]
-margin_left = 95.0
-margin_top = 20.0
-margin_right = 345.0
-margin_bottom = 34.0
-rect_min_size = Vector2( 250, 0 )
-text = "hello"
-
-[node name="Button" type="Button" parent="PersonPanel/GridContainer"]
-margin_left = 349.0
-margin_right = 361.0
-margin_bottom = 55.0
-
 [connection signal="button_pressed" from="PersonPanel/PersonTree" to="PersonPanel/PersonTree" method="_on_EmployeeTree_button_pressed"]
 [connection signal="button_up" from="PersonPanel/BackButton" to="PersonPanel" method="_on_BackButton_button_up"]
+[connection signal="button_up" from="PersonPanel/AdminButton" to="PersonPanel" method="_on_AdminButton_button_up"]
 [connection signal="button_up" from="PersonPanel/VisitorNameEnterButton" to="PersonPanel" method="_on_VisitorNameEnterButton_button_up"]
