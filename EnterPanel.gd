@@ -118,4 +118,5 @@ func _on_VisitorNameEnterButton_button_up():
 
 
 func _on_AdminButton_button_up():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://AdminScreen.tscn")

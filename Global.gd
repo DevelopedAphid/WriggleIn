@@ -15,6 +15,8 @@ func _ready():
 	
 	people_dict = load_people_list()
 	sort_person_list()
+	
+	OS.window_fullscreen = true
 
 func get_person(dict_key) -> Dictionary:
 	return people_dict.get("Person " + str(dict_key))
@@ -116,6 +118,7 @@ func save_people_list():
 	saved_list.close()
 
 func load_people_list() -> Dictionary:
+	#TODO: needs to handle the file not existing yet
 	var list_to_load = File.new()
 	list_to_load.open("user://people_list.json", File.READ)
 	var content = list_to_load.get_as_text()
