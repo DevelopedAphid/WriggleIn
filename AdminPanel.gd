@@ -1,8 +1,7 @@
 extends Panel
 
 func _ready():
-	pass 
-	#TODO: populate list here so people can be removed from this screen
+	$EvacuationButton.icon = Global.enter_image
 
 func _on_BackButton_button_up():
 # warning-ignore:return_value_discarded

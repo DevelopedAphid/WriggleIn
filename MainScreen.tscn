@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://fonts/Open_Sans_Reg_40.tres" type="DynamicFont" id=1]
 [ext_resource path="res://MainScreen.gd" type="Script" id=2]
-[ext_resource path="res://art/in_photo_1.jpg" type="Texture" id=3]
-[ext_resource path="res://art/out_photo_1.jpg" type="Texture" id=4]
 [ext_resource path="res://fonts/Open_Sans_Light.tres" type="DynamicFont" id=5]
 [ext_resource path="res://art/levno_icon.svg" type="Texture" id=7]
 
@@ -55,7 +53,6 @@ margin_right = 270.0
 margin_bottom = 451.0
 rect_min_size = Vector2( 100, 100 )
 shortcut_in_tooltip = false
-icon = ExtResource( 3 )
 flat = true
 clip_text = true
 expand_icon = true
@@ -96,7 +93,6 @@ margin_right = 8.0
 margin_bottom = 367.0
 rect_min_size = Vector2( 100, 100 )
 shortcut_in_tooltip = false
-icon = ExtResource( 4 )
 flat = true
 clip_text = true
 expand_icon = true

@@ -20,7 +20,7 @@ func _ready():
 	bg_vbox_container = $BackgroundScrollContainer/BackgroundVBoxContainer
 	
 	if Global.person_type_to_show == "Visitor":
-		$VisitorNameTextEdit.visible = true
+		$VisitorNameLineEdit.visible = true
 		$VisitorNameEnterButton.visible = true
 		$CurrentVistorsLabel.visible = true
 		person_scroll_container.anchor_top = 0.3
@@ -28,7 +28,7 @@ func _ready():
 		bg_scroll_container.anchor_top = 0.3
 		bg_scroll_container.anchor_bottom = 1.0
 	else:
-		$VisitorNameTextEdit.visible = false
+		$VisitorNameLineEdit.visible = false
 		$VisitorNameEnterButton.visible = false
 		$CurrentVistorsLabel.visible = false
 		person_scroll_container.anchor_top = 0.0

@@ -5,6 +5,9 @@ extends Control
 func _ready():
 	#clean up old visitors every time we get to the main screen
 	Global.remove_previous_visitors()
+	
+	$MainPanel/EnterPanel/EnterButton.icon = Global.enter_image
+	$MainPanel/LeavePanel/LeaveButton.icon = Global.exit_image
 
 func _on_EnterButton_button_up():
 	Global.change_status_to_show("out")

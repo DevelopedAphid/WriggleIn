@@ -7,6 +7,9 @@ signal person_list_changed
 var status_to_show: String = "all"
 var person_type_to_show: String = "all"
 
+var enter_image
+var exit_image
+
 var people_dict = {}
 
 func _ready():
@@ -17,6 +20,9 @@ func _ready():
 	sort_person_list()
 	
 	OS.window_fullscreen = true
+	
+	enter_image = load("res://art/in_photo_1.jpg")
+	exit_image = load("res://art/out_photo_1.jpg")
 
 func get_person(dict_key) -> Dictionary:
 	return people_dict.get("Person " + str(dict_key))
