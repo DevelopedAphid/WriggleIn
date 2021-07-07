@@ -78,6 +78,9 @@ margin_bottom = 567.672
 icon = ExtResource( 4 )
 flat = true
 expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FileDialog" type="FileDialog" parent="AdminPanel"]
 margin_left = 323.0

@@ -1,7 +1,7 @@
 extends Panel
 
 func _ready():
-	$EvacuationButton.icon = Global.enter_image
+	pass
 
 func _on_BackButton_button_up():
 # warning-ignore:return_value_discarded
