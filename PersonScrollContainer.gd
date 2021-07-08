@@ -1,5 +1,7 @@
 extends ScrollContainer
 
+signal user_input_detected
+
 # Allows you to scroll a scroll container by dragging.
 # Includes momentum.
 
@@ -14,6 +16,8 @@ func _ready():
 	bg_scroll_container = get_parent().get_node("BackgroundScrollContainer")
 
 func _input(ev):
+	emit_signal("user_input_detected")
+	
 	if ev is InputEventMouseButton:
 		if ev.pressed:
 			swiping = true

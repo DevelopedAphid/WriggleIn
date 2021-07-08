@@ -12,6 +12,7 @@ var person_scroll_container
 var person_grid_container
 var bg_scroll_container
 var bg_vbox_container
+var no_activity_timer
 
 func _ready():
 	person_scroll_container = $PersonScrollContainer
@@ -41,9 +42,16 @@ func _ready():
 	
 	create_list()
 	
+	no_activity_timer = Timer.new()
+	add_child(no_activity_timer)
+	no_activity_timer.one_shot = true
+	no_activity_timer.wait_time = 10.0
+	no_activity_timer.connect("timeout", self, "_on_No_activity_timer_timeout")
+	no_activity_timer.start()
+	
 	#TODO: set fonts, colours, and dimensions up here
 
-func create_list():	
+func create_list():
 	for n in Global.people_dict:
 		var current_person = Global.get_person_with_string(n)
 		if Global.person_type_to_show == "all" && Global.status_to_show == "all":
@@ -94,6 +102,8 @@ func _on_BackButton_button_up():
 	get_tree().change_scene("res://MainScreen.tscn")
 
 func _on_StatusButton_pressed(person, button, index):
+	restart_no_activity_timer()
+	
 # warning-ignore:return_value_discarded
 	var new_status = Global.change_person_status_from_string(person)
 	
@@ -116,7 +126,16 @@ func _on_VisitorNameEnterButton_button_up():
 	
 	get_tree().change_scene("res://MainScreen.tscn")
 
+func _on_No_activity_timer_timeout():
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://MainScreen.tscn")
+
+func restart_no_activity_timer():
+	no_activity_timer.start()
 
 func _on_AdminButton_button_up():
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://AdminScreen.tscn")
+
+func _on_PersonScrollContainer_user_input_detected():
+	restart_no_activity_timer()

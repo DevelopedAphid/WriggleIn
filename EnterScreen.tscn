@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://EnterPanel.gd" type="Script" id=1]
 [ext_resource path="res://PersonTree.gd" type="Script" id=2]
@@ -15,17 +15,57 @@ bg_color = Color( 1, 1, 1, 0.945098 )
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.988235, 0.627451, 0.286275, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="Theme" id=5]
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = SubResource( 3 )
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = SubResource( 4 )
+VScrollBar/styles/scroll_focus = null
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color( 0.619608, 0.619608, 0.619608, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Theme" id=8]
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = SubResource( 6 )
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = SubResource( 7 )
+VScrollBar/styles/scroll_focus = null
+
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.721569, 0.721569, 0.721569, 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0.878431, 0.878431, 0.878431, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -60,6 +100,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 65.0
+theme = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -70,6 +111,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 65.0
+theme = SubResource( 8 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -87,7 +129,7 @@ margin_top = 105.0
 margin_right = 730.0
 margin_bottom = 236.0
 mouse_filter = 1
-custom_styles/bg = SubResource( 3 )
+custom_styles/bg = SubResource( 9 )
 custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 columns = 4
@@ -126,7 +168,7 @@ anchor_right = 0.7
 anchor_bottom = 0.3
 margin_right = -60.8
 rect_min_size = Vector2( 700, 65 )
-custom_styles/normal = SubResource( 4 )
+custom_styles/normal = SubResource( 10 )
 custom_fonts/font = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -137,7 +179,7 @@ anchor_left = 0.75
 anchor_top = 0.15
 anchor_right = 0.95
 anchor_bottom = 0.3
-custom_styles/normal = SubResource( 5 )
+custom_styles/normal = SubResource( 11 )
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Add visitor"
@@ -156,6 +198,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="user_input_detected" from="PersonPanel/PersonScrollContainer" to="PersonPanel" method="_on_PersonScrollContainer_user_input_detected"]
 [connection signal="button_pressed" from="PersonPanel/PersonTree" to="PersonPanel/PersonTree" method="_on_EmployeeTree_button_pressed"]
 [connection signal="button_up" from="PersonPanel/BackButton" to="PersonPanel" method="_on_BackButton_button_up"]
 [connection signal="button_up" from="PersonPanel/AdminButton" to="PersonPanel" method="_on_AdminButton_button_up"]
