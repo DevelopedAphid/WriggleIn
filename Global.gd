@@ -9,6 +9,8 @@ var person_type_to_show: String = "all"
 
 var enter_image
 var exit_image
+var list_font
+var troll_font
 
 var people_dict = {}
 
@@ -19,10 +21,12 @@ func _ready():
 	people_dict = load_people_list()
 	sort_person_list()
 	
-	OS.window_fullscreen = true
+#	OS.window_fullscreen = true
 	
 	enter_image = load("res://art/in_photo_1.jpg")
 	exit_image = load("res://art/out_photo_1.jpg")
+	list_font = load("res://fonts/sofia_40.tres")
+	troll_font = load("res://fonts/comic_40.tres")
 
 func get_person(dict_key) -> Dictionary:
 	return people_dict.get("Person " + str(dict_key))

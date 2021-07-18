@@ -1,6 +1,5 @@
 extends Panel
 
-var dynamic_font = load("res://fonts/Open_Sans_Reg_40.tres")
 var screen_size
 var name_width_percent = 0.50
 var time_width_percent = 0.20
@@ -60,27 +59,34 @@ func create_list():
 			load_person_into_list(current_person, n)
 
 func load_person_into_list(current_person, person_string):
+	var list_font = Global.list_font
 	var name_label = Label.new()
 	person_grid_container.add_child(name_label)
 	name_label.text = "  " + current_person.Name
-	name_label.add_font_override("font", dynamic_font)
+	if current_person.Name == "Kate Gwilliam":
+		name_label.add_font_override("font", Global.troll_font)
+	else: 
+		name_label.add_font_override("font", list_font)
 	name_label.add_color_override("font_color", Color(0,0,0,0.8))
 	name_label.rect_min_size = Vector2(name_width_percent*screen_size.x, line_height)
+	name_label.valign = Label.VALIGN_CENTER
 	
 	var time_label = Label.new()
 	person_grid_container.add_child(time_label)
 	time_label.text = current_person.Time_status_changed
-	time_label.add_font_override("font", dynamic_font)
+	time_label.add_font_override("font", list_font)
 	time_label.add_color_override("font_color", Color(0,0,0,0.8))
 	time_label.rect_min_size = Vector2(time_width_percent*screen_size.x, line_height)
+	time_label.valign = Label.VALIGN_CENTER
 	
 	#TODO: remove in/out labels??
 	var status_label = Label.new()
 	person_grid_container.add_child(status_label)
 	status_label.text = current_person.Status
-	status_label.add_font_override("font", dynamic_font)
+	status_label.add_font_override("font", list_font)
 	status_label.add_color_override("font_color", Color(0,0,0,0.8))
 	status_label.rect_min_size = Vector2(status_width_percent*screen_size.x, line_height)
+	status_label.valign = Label.VALIGN_CENTER
 	
 	var status_button = Button.new()
 	person_grid_container.add_child(status_button)
@@ -116,10 +122,10 @@ func _on_StatusButton_pressed(person, button, index):
 	person_grid_container.get_child(index-3).text = Global.get_person_with_string(person).Time_status_changed
 
 func _on_VisitorNameEnterButton_button_up():
-	var text_box = get_node("VisitorNameTextEdit")
+	var text_box = get_node("VisitorNameLineEdit")
 	var person_name = text_box.text
 	
-	if person_name != "" && text_box.get_line_count() == 1:
+	if person_name != "":
 		Global.add_new_person(person_name, "Visitor")
 	
 	text_box.text = ""

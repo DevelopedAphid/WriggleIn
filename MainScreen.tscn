@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://fonts/Open_Sans_Reg_40.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/sofia_40.tres" type="DynamicFont" id=1]
 [ext_resource path="res://MainScreen.gd" type="Script" id=2]
-[ext_resource path="res://fonts/Open_Sans_Light.tres" type="DynamicFont" id=5]
 [ext_resource path="res://art/levno_icon.svg" type="Texture" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -69,7 +68,9 @@ __meta__ = {
 
 [node name="EnterLabel" type="Label" parent="MainPanel/EnterPanel"]
 anchor_left = 0.5
+anchor_top = 0.15
 anchor_right = 0.5
+anchor_bottom = 0.33
 margin_left = -144.0
 margin_top = 72.0
 margin_right = 144.0
@@ -111,7 +112,9 @@ __meta__ = {
 
 [node name="LeaveLabel" type="Label" parent="MainPanel/LeavePanel"]
 anchor_left = 0.5
+anchor_top = 0.15
 anchor_right = 0.5
+anchor_bottom = 0.25
 margin_left = -144.0
 margin_top = 72.0
 margin_right = 144.0
@@ -131,13 +134,13 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -144.0
-margin_top = -92.0
+margin_top = -100.0
 margin_right = 144.0
-margin_bottom = -20.0
+margin_bottom = -35.0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Just visiting?"
 __meta__ = {
@@ -145,15 +148,13 @@ __meta__ = {
 }
 
 [node name="Logo" type="TextureRect" parent="MainPanel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -125.0
-margin_top = -188.5
-margin_right = 125.0
-margin_bottom = -59.5
+margin_left = 35.0
+margin_top = 35.0
+margin_right = 193.0
+margin_bottom = 130.0
 texture = ExtResource( 7 )
+expand = true
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
