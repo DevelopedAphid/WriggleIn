@@ -63,10 +63,7 @@ func load_person_into_list(current_person, person_string):
 	var name_label = Label.new()
 	person_grid_container.add_child(name_label)
 	name_label.text = "  " + current_person.Name
-	if current_person.Name == "Kate Gwilliam":
-		name_label.add_font_override("font", Global.troll_font)
-	else: 
-		name_label.add_font_override("font", list_font)
+	name_label.add_font_override("font", list_font)
 	name_label.add_color_override("font_color", Color(0,0,0,0.8))
 	name_label.rect_min_size = Vector2(name_width_percent*screen_size.x, line_height)
 	name_label.valign = Label.VALIGN_CENTER
@@ -120,6 +117,9 @@ func _on_StatusButton_pressed(person, button, index):
 	
 	person_grid_container.get_child(index-2).text = Global.get_person_with_string(person).Status
 	person_grid_container.get_child(index-3).text = Global.get_person_with_string(person).Time_status_changed
+	
+	if Global.get_person_with_string(person).Name == "Kate Gwilliam":
+		person_grid_container.get_child(index-4).add_font_override("font", Global.troll_font)
 
 func _on_VisitorNameEnterButton_button_up():
 	var text_box = get_node("VisitorNameLineEdit")
