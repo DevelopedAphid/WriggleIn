@@ -87,6 +87,8 @@ func change_person_status(ID_Number) -> String:
 	get_person(ID_Number).Status = current_status
 	get_person(ID_Number).Time_status_changed = get_current_time()
 	
+	save_people_list()
+	
 	return current_status
 
 func change_person_status_from_string(person) -> String:
@@ -99,6 +101,8 @@ func change_person_status_from_string(person) -> String:
 	
 	current_person.Status = current_status
 	current_person.Time_status_changed = get_current_time()
+	
+	save_people_list()
 	
 	return current_status
 
