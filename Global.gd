@@ -132,9 +132,11 @@ func save_people_list():
 	saved_list.close()
 
 func load_people_list() -> Dictionary:
-	#TODO: needs to handle the file not existing yet
 	var list_to_load = File.new()
-	list_to_load.open("user://people_list.json", File.READ)
+	var file_path_string = "user://people_list.json"
+	if (list_to_load.file_exists(file_path_string)) != true:
+		save_people_list()
+	list_to_load.open(file_path_string, File.READ)
 	var content = list_to_load.get_as_text()
 	content = parse_json(content)
 	list_to_load.close()
