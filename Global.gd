@@ -13,7 +13,7 @@ var list_font
 var troll_font
 
 var people_dict = {}
-var in_out_logs = []
+var in_out_logs = {}
 
 func _ready():
 	#low processor usage mode refreshes screen only when needed
@@ -21,6 +21,7 @@ func _ready():
 	
 	people_dict = load_people_list()
 	sort_person_list()
+	in_out_logs = load_logs()
 	
 #	OS.window_fullscreen = true
 	
@@ -91,10 +92,8 @@ func change_person_status(ID_Number) -> String:
 	
 	save_people_list()
 	
-	#save to in/out logs
-	var time = OS.get_datetime()
-	time = "%02d-%02d-%02d %02d:%02d" % [time.year, time.month, time.day, time.hour, time.minute]
-	in_out_logs.append({"Name:":current_person.Name, "status":current_status, "time":time})
+	add_to_logs(current_person)
+	save_logs()
 	
 	return current_status
 
@@ -111,12 +110,21 @@ func change_person_status_from_string(person) -> String:
 	
 	save_people_list()
 	
-	#save to in/out logs
-	var time = OS.get_datetime()
-	time = "%02d-%02d-%02d %02d:%02d" % [time.year, time.month, time.day, time.hour, time.minute]
-	in_out_logs.append({"Name:":current_person.Name, "status":current_status, "time":time})
+	add_to_logs(current_person)
+	save_logs()
 	
 	return current_status
+
+func add_to_logs(person):
+	var time = OS.get_datetime()
+	var date = "%02d-%02d-%02d" % [time.year, time.month, time.day]
+	time = "%02d-%02d-%02d %02d:%02d" % [time.year, time.month, time.day, time.hour, time.minute]
+	
+	if in_out_logs.has(str(date)):
+		in_out_logs[str(date)].append({"Name:":person.Name, "status":person.Status, "time":time})
+	else:
+		in_out_logs[str(date)] = [{"Name:":person.Name, "status":person.Status, "time":time}]
+	print(in_out_logs)
 
 func get_current_time() -> String:
 	var time = "%02d:%02d" % [OS.get_datetime().hour, OS.get_datetime().minute]
@@ -152,4 +160,21 @@ func load_people_list() -> Dictionary:
 	var content = list_to_load.get_as_text()
 	content = parse_json(content)
 	list_to_load.close()
+	return content
+
+func save_logs():
+	var saved_logs = File.new()
+	saved_logs.open("user://logs.json", File.WRITE)
+	saved_logs.store_string(to_json(in_out_logs))
+	saved_logs.close()
+
+func load_logs() -> Dictionary:
+	var logs_to_load = File.new()
+	var file_path_string = "user://logs.json"
+	if (logs_to_load.file_exists(file_path_string)) != true:
+		save_logs()
+	logs_to_load.open(file_path_string, File.READ)
+	var content = logs_to_load.get_as_text()
+	content = parse_json(content)
+	logs_to_load.close()
 	return content
