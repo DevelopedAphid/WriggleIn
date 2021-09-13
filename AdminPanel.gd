@@ -23,5 +23,5 @@ func _on_FileDialog_file_selected(path):
 	$FileDialog.hide()
 
 func _on_CopyLogsButton_pressed():
-	var date = get_node("NameTextEdit").text
+	var date = get_node("LogDateTextEdit").text
 	OS.set_clipboard(str(Global.in_out_logs.get(str(date))))
