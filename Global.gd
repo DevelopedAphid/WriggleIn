@@ -13,6 +13,7 @@ var list_font
 var troll_font
 
 var people_dict = {}
+var in_out_logs = []
 
 func _ready():
 	#low processor usage mode refreshes screen only when needed
@@ -77,17 +78,23 @@ func custom_comparison(a,b):
 		return a.Name < b.Name
 
 func change_person_status(ID_Number) -> String:
+	var current_person = get_person(ID_Number)
 	ID_Number = str(ID_Number) #as dictionary expects string not int
-	var current_status = get_person(ID_Number).Status
+	var current_status = current_person.Status
 	if current_status == "in":
 		current_status = "out"
 	elif current_status == "out":
 		current_status = "in"
 	
-	get_person(ID_Number).Status = current_status
-	get_person(ID_Number).Time_status_changed = get_current_time()
+	current_person.Status = current_status
+	current_person.Time_status_changed = get_current_time()
 	
 	save_people_list()
+	
+	#save to in/out logs
+	var time = OS.get_datetime()
+	time = "%02d-%02d-%02d %02d:%02d" % [time.year, time.month, time.day, time.hour, time.minute]
+	in_out_logs.append({"Name:":current_person.Name, "status":current_status, "time":time})
 	
 	return current_status
 
@@ -103,6 +110,11 @@ func change_person_status_from_string(person) -> String:
 	current_person.Time_status_changed = get_current_time()
 	
 	save_people_list()
+	
+	#save to in/out logs
+	var time = OS.get_datetime()
+	time = "%02d-%02d-%02d %02d:%02d" % [time.year, time.month, time.day, time.hour, time.minute]
+	in_out_logs.append({"Name:":current_person.Name, "status":current_status, "time":time})
 	
 	return current_status
 
