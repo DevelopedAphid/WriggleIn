@@ -121,9 +121,9 @@ func add_to_logs(person):
 	time = "%02d-%02d-%02d %02d:%02d" % [time.year, time.month, time.day, time.hour, time.minute]
 	
 	if in_out_logs.has(str(date)):
-		in_out_logs[str(date)].append({"Name:":person.Name, "status":person.Status, "time":time})
+		in_out_logs[str(date)].append({"Name":person.Name, "Status":person.Status, "When":time})
 	else:
-		in_out_logs[str(date)] = [{"Name:":person.Name, "status":person.Status, "time":time}]
+		in_out_logs[str(date)] = [{"Name":person.Name, "Status":person.Status, "When":time}]
 	print(in_out_logs)
 
 func get_current_time() -> String:

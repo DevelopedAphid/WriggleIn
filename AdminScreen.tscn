@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://AdminPanel.gd" type="Script" id=1]
 [ext_resource path="res://AdminTree.gd" type="Script" id=2]
 [ext_resource path="res://fonts/Open_Sans_Light.tres" type="DynamicFont" id=3]
 [ext_resource path="res://art/emergency_exit.svg" type="Texture" id=4]
 [ext_resource path="res://fonts/Open_Sans_Light_20.tres" type="DynamicFont" id=5]
+[ext_resource path="res://icons/left_arrow.svg" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.988235, 0.627451, 0.286275, 1 )
@@ -29,17 +30,17 @@ __meta__ = {
 }
 
 [node name="NameTextEdit" type="TextEdit" parent="AdminPanel"]
-margin_left = 10.0
-margin_top = 11.0
-margin_right = 284.0
-margin_bottom = 82.0
+margin_left = 110.918
+margin_top = 14.6697
+margin_right = 384.918
+margin_bottom = 85.6697
 custom_fonts/font = ExtResource( 3 )
 
 [node name="EnterButton" type="Button" parent="AdminPanel"]
-margin_left = 9.36546
-margin_top = 138.267
-margin_right = 278.365
-margin_bottom = 199.267
+margin_left = 113.2
+margin_top = 88.4622
+margin_right = 382.2
+margin_bottom = 149.463
 custom_fonts/font = ExtResource( 5 )
 text = "Add employee"
 __meta__ = {
@@ -47,21 +48,23 @@ __meta__ = {
 }
 
 [node name="BackButton" type="Button" parent="AdminPanel"]
-margin_left = 15.7668
-margin_top = 211.21
-margin_right = 114.767
-margin_bottom = 272.21
+margin_left = 4.33026
+margin_top = 8.49541
+margin_right = 71.3303
+margin_bottom = 69.4954
 custom_fonts/font = ExtResource( 5 )
-text = "Back"
+icon = ExtResource( 6 )
+flat = true
+expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AdminTree" type="Tree" parent="AdminPanel"]
-margin_left = 315.0
+margin_left = 403.073
 margin_top = 14.0
-margin_right = 999.0
-margin_bottom = 572.0
+margin_right = 971.073
+margin_bottom = 316.0
 custom_styles/bg = SubResource( 2 )
 custom_fonts/font = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -71,10 +74,11 @@ __meta__ = {
 }
 
 [node name="EvacuationButton" type="Button" parent="AdminPanel"]
-margin_left = 43.4182
-margin_top = 536.942
-margin_right = 255.418
-margin_bottom = 745.942
+visible = false
+margin_left = 944.563
+margin_top = 121.161
+margin_right = 1039.56
+margin_bottom = 212.161
 icon = ExtResource( 4 )
 flat = true
 expand_icon = true
@@ -91,24 +95,33 @@ rect_min_size = Vector2( 150, 52.5 )
 window_title = "Open a File"
 mode = 0
 access = 2
-current_dir = "/home/michael/Godot/WriggleIn"
-current_path = "/home/michael/Godot/WriggleIn/"
+current_dir = "/Users/michaeldavis/Git/WriggleIn"
+current_path = "/Users/michaeldavis/Git/WriggleIn/"
 
 [node name="CopyLogsButton" type="Button" parent="AdminPanel"]
-margin_left = 12.6096
-margin_top = 473.235
-margin_right = 85.6096
-margin_bottom = 511.235
-text = "copy logs"
+margin_left = 107.918
+margin_top = 275.67
+margin_right = 384.918
+margin_bottom = 313.67
+text = "Display logs"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LogDateTextEdit" type="TextEdit" parent="AdminPanel"]
-margin_left = 8.22748
-margin_top = 395.044
-margin_right = 287.227
-margin_bottom = 463.044
+margin_left = 108.173
+margin_top = 203.289
+margin_right = 387.173
+margin_bottom = 271.289
+
+[node name="LogRichTextLabel" type="RichTextLabel" parent="AdminPanel"]
+margin_left = 18.0
+margin_top = 331.0
+margin_right = 995.0
+margin_bottom = 736.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="button_up" from="AdminPanel/EnterButton" to="AdminPanel" method="_on_EnterButton_button_up"]
 [connection signal="button_up" from="AdminPanel/BackButton" to="AdminPanel" method="_on_BackButton_button_up"]
