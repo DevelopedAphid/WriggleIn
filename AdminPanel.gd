@@ -24,5 +24,5 @@ func _on_FileDialog_file_selected(path):
 
 func _on_CopyLogsButton_pressed():
 	var date = get_node("LogDateTextEdit").text
-#	OS.set_clipboard(str(Global.in_out_logs.get(str(date))))
+	OS.set_clipboard(str(Global.in_out_logs.get(str(date))))
 	get_node("LogRichTextLabel").text = str(Global.in_out_logs.get(str(date)))
