@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/office.svg-44bef4c7395ff4e2a525b8aa08e1138e.stex"
+path="res://.import/check_mark.png-5bd40eb4ed5ee65f29548fd05c8d41cf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/office.svg"
-dest_files=[ "res://.import/office.svg-44bef4c7395ff4e2a525b8aa08e1138e.stex" ]
+source_file="res://icons/check_mark.png"
+dest_files=[ "res://.import/check_mark.png-5bd40eb4ed5ee65f29548fd05c8d41cf.stex" ]
 
 [params]
 
@@ -28,7 +28,8 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
-svg/scale=5.0
+detect_3d=false
+svg/scale=1.0

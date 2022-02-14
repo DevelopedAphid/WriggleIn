@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/emergency_exit.svg-1a50bfa0aedff421f9aa0f1473ff53fa.stex"
+path="res://.import/siren.png-bbfba156d22dd0bc309964522a70f0bb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/emergency_exit.svg"
-dest_files=[ "res://.import/emergency_exit.svg-1a50bfa0aedff421f9aa0f1473ff53fa.stex" ]
+source_file="res://icons/siren.png"
+dest_files=[ "res://.import/siren.png-bbfba156d22dd0bc309964522a70f0bb.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

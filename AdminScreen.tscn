@@ -3,7 +3,7 @@
 [ext_resource path="res://AdminPanel.gd" type="Script" id=1]
 [ext_resource path="res://AdminTree.gd" type="Script" id=2]
 [ext_resource path="res://fonts/Open_Sans_Light.tres" type="DynamicFont" id=3]
-[ext_resource path="res://art/emergency_exit.svg" type="Texture" id=4]
+[ext_resource path="res://icons/siren.png" type="Texture" id=4]
 [ext_resource path="res://fonts/Open_Sans_Light_20.tres" type="DynamicFont" id=5]
 [ext_resource path="res://icons/left_arrow.svg" type="Texture" id=6]
 
@@ -73,19 +73,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EvacuationButton" type="Button" parent="AdminPanel"]
-visible = false
-margin_left = 944.563
-margin_top = 121.161
-margin_right = 1039.56
-margin_bottom = 212.161
-icon = ExtResource( 4 )
-flat = true
-expand_icon = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="FileDialog" type="FileDialog" parent="AdminPanel"]
 margin_left = 323.0
 margin_top = 43.0
@@ -123,8 +110,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="EvacuationButton" type="Button" parent="AdminPanel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -94.9971
+margin_top = -91.0
+icon = ExtResource( 4 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="button_up" from="AdminPanel/EnterButton" to="AdminPanel" method="_on_EnterButton_button_up"]
 [connection signal="button_up" from="AdminPanel/BackButton" to="AdminPanel" method="_on_BackButton_button_up"]
 [connection signal="button_pressed" from="AdminPanel/AdminTree" to="AdminPanel/AdminTree" method="_on_AdminTree_button_pressed"]
 [connection signal="file_selected" from="AdminPanel/FileDialog" to="AdminPanel" method="_on_FileDialog_file_selected"]
 [connection signal="pressed" from="AdminPanel/CopyLogsButton" to="AdminPanel" method="_on_CopyLogsButton_pressed"]
+[connection signal="pressed" from="AdminPanel/EvacuationButton" to="AdminPanel" method="_on_EvacuationButton_pressed"]

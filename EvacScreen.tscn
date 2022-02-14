@@ -1,0 +1,118 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://EvacPanel.gd" type="Script" id=1]
+[ext_resource path="res://PersonScrollContainer.gd" type="Script" id=2]
+[ext_resource path="res://icons/left_arrow.svg" type="Texture" id=3]
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 1, 1, 1, 0.945098 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.988235, 0.627451, 0.286275, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="Theme" id=10]
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = SubResource( 3 )
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = SubResource( 4 )
+VScrollBar/styles/scroll_focus = null
+
+[sub_resource type="StyleBoxFlat" id=6]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color( 0.619608, 0.619608, 0.619608, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Theme" id=11]
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = SubResource( 6 )
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = SubResource( 7 )
+VScrollBar/styles/scroll_focus = null
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( -337, -129 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PersonPanel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 8 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TopPanel" type="Panel" parent="PersonPanel"]
+anchor_right = 1.0
+margin_bottom = 65.0
+custom_styles/panel = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundScrollContainer" type="ScrollContainer" parent="PersonPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 65.0
+theme = SubResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundVBoxContainer" type="VBoxContainer" parent="PersonPanel/BackgroundScrollContainer"]
+
+[node name="PersonScrollContainer" type="ScrollContainer" parent="PersonPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.698547
+margin_top = 66.4362
+margin_right = 0.698486
+margin_bottom = 1.43616
+theme = SubResource( 11 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PersonVBoxContainer" type="VBoxContainer" parent="PersonPanel/PersonScrollContainer"]
+
+[node name="PersonGridContainer" type="GridContainer" parent="PersonPanel/PersonScrollContainer/PersonVBoxContainer"]
+columns = 4
+
+[node name="BackButton" type="Button" parent="PersonPanel"]
+margin_top = 5.0
+margin_right = 84.0
+margin_bottom = 55.0
+icon = ExtResource( 3 )
+flat = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="PersonPanel/BackButton" to="PersonPanel" method="_on_BackButton_button_up"]
