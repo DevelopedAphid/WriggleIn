@@ -58,7 +58,7 @@ func load_person_into_list(current_person, person_string):
 	#TODO: remove in/out labels??
 	var status_label = Label.new()
 	person_grid_container.add_child(status_label)
-	status_label.text = current_person.Status
+	status_label.text = ""
 	status_label.add_font_override("font", list_font)
 	status_label.add_color_override("font_color", Color(0,0,0,0.8))
 	status_label.rect_min_size = Vector2(status_width_percent*screen_size.x, line_height)
@@ -68,6 +68,7 @@ func load_person_into_list(current_person, person_string):
 	person_grid_container.add_child(status_button)
 	status_button.icon = load("res://icons/cross_mark.png")
 	status_button.flat = true
+	status_button.text = ""
 	status_button.rect_min_size = Vector2(button_width_percent*screen_size.x, line_height)
 	status_button.expand_icon = true
 	status_button.connect("pressed", self, "_on_StatusButton_pressed", [person_string, status_button, person_grid_container.get_child_count()])
@@ -81,7 +82,10 @@ func _on_BackButton_button_up():
 	get_tree().change_scene("res://AdminScreen.tscn")
 
 func _on_StatusButton_pressed(_person, button, index):
-	button.icon = load("res://icons/check_mark.png")
-	
-	person_grid_container.get_child(index-2).text = "OK"
+	if button.text == "":
+		button.icon = load("res://icons/check_mark.png")
+		button.text = "OK"
+	elif button.text == "OK":
+		button.icon = load("res://icons/cross_mark.png")
+		button.text = ""
 
